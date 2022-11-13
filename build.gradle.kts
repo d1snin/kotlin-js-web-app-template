@@ -14,8 +14,6 @@ version = projectVersion
 
 repositories {
     mavenCentral()
-    jcenter()
-    mavenLocal()
 }
 
 val kotlinVersion: String by project
