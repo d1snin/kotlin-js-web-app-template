@@ -24,6 +24,10 @@ Binaries will be located at `./build/distributions`.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md)
 
+### Code of Conduct
+
+See [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
+
 ### License
 
 ```
