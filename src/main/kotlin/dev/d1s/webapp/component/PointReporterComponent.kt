@@ -5,8 +5,8 @@ import io.kvision.html.div
 import io.kvision.panel.vPanel
 import io.kvision.state.ObservableValue
 import io.kvision.state.bind
-import io.kvision.utils.em
 import io.kvision.utils.perc
+import io.kvision.utils.vw
 import kotlinx.browser.document
 
 private data class Point(
@@ -24,7 +24,7 @@ fun Container.pointReporter() {
         height = 100.perc
         color = Color.name(Col.WHITE)
         fontFamily = "JetBrains Mono"
-        fontSize = 5.em
+        fontSize = 8.vw
 
         div().bind(observablePoint) { state ->
             +state.toString()
