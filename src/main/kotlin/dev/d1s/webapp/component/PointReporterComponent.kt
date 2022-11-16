@@ -24,7 +24,7 @@ fun Container.pointReporter() {
         height = 100.perc
         color = Color.name(Col.WHITE)
         fontFamily = "JetBrains Mono"
-        fontSize = 8.vw
+        fontSize = 7.vw
 
         div().bind(observablePoint) { state ->
             +state.toString()
