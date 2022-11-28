@@ -27,12 +27,17 @@ import io.kvision.utils.perc
 class TemplateApplication : Application() {
 
     override fun start() {
-        root("root") {
+        root(ROOT_ELEMENT_ID) {
             width = 100.perc
             background = Background(Color.name(Col.BLACK))
 
             pointReporter()
         }
+    }
+
+    private companion object {
+
+        private const val ROOT_ELEMENT_ID = "root"
     }
 }
 

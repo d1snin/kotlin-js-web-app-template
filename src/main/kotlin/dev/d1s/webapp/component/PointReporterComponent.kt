@@ -18,6 +18,7 @@ package dev.d1s.webapp.component
 
 import io.kvision.core.*
 import io.kvision.html.div
+import io.kvision.panel.VPanel
 import io.kvision.panel.vPanel
 import io.kvision.state.ObservableValue
 import io.kvision.state.bind
@@ -26,21 +27,14 @@ import io.kvision.utils.vw
 import kotlinx.browser.document
 
 private data class Point(
-    val x: Double = .0,
-    val y: Double = .0
+    val x: Double = .0, val y: Double = .0
 )
 
 fun Container.pointReporter() {
     val observablePoint = ObservableValue(Point())
 
     vPanel {
-        justifyContent = JustifyContent.CENTER
-        alignItems = AlignItems.CENTER
-
-        height = 100.perc
-        color = Color.name(Col.WHITE)
-        fontFamily = "JetBrains Mono"
-        fontSize = 7.vw
+        style()
 
         div().bind(observablePoint) { state ->
             +state.toString()
@@ -51,4 +45,16 @@ fun Container.pointReporter() {
         observablePoint.value = Point(it.x, it.y)
         asDynamic()
     }
+}
+
+fun VPanel.style() {
+    justifyContent = JustifyContent.CENTER
+    alignItems = AlignItems.CENTER
+
+    height = 100.perc
+    color = Color.name(Col.WHITE)
+
+    fontFamily = "JetBrains Mono"
+    fontSize = 7.vw
+
 }
