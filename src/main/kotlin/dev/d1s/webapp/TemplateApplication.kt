@@ -16,22 +16,37 @@
 
 package dev.d1s.webapp
 
-import dev.d1s.webapp.component.pointReporter
+import dev.d1s.webapp.component.Component
+import dev.d1s.webapp.di.setupDi
 import io.kvision.*
 import io.kvision.core.Background
 import io.kvision.core.Col
 import io.kvision.core.Color
+import io.kvision.core.Container
 import io.kvision.panel.root
 import io.kvision.utils.perc
+import org.koin.core.component.KoinComponent
 
-class TemplateApplication : Application() {
+class TemplateApplication : Application(), KoinComponent {
+
+    private val components by lazy {
+        getKoin().getAll<Component>()
+    }
 
     override fun start() {
         root(ROOT_ELEMENT_ID) {
             width = 100.perc
             background = Background(Color.name(Col.BLACK))
 
-            pointReporter()
+            loadComponents()
+        }
+    }
+
+    private fun Container.loadComponents() {
+        components.forEach {
+            with(it) {
+                render()
+            }
         }
     }
 
@@ -42,6 +57,8 @@ class TemplateApplication : Application() {
 }
 
 fun main() {
+    setupDi()
+
     startApplication(
         ::TemplateApplication,
         module.hot,

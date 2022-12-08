@@ -25,36 +25,39 @@ import io.kvision.state.bind
 import io.kvision.utils.perc
 import io.kvision.utils.vw
 import kotlinx.browser.document
+import org.koin.core.component.KoinComponent
+
+class PointReporterComponent : Component, KoinComponent {
+
+    override fun Container.render() {
+        val observablePoint = ObservableValue(Point())
+
+        vPanel {
+            style()
+
+            div().bind(observablePoint) { state ->
+                +state.toString()
+            }
+        }
+
+        document.onmousemove = {
+            observablePoint.value = Point(it.x, it.y)
+            asDynamic()
+        }
+    }
+
+    private fun VPanel.style() {
+        justifyContent = JustifyContent.CENTER
+        alignItems = AlignItems.CENTER
+
+        height = 100.perc
+        color = Color.name(Col.WHITE)
+
+        fontFamily = "JetBrains Mono"
+        fontSize = 7.vw
+    }
+}
 
 private data class Point(
     val x: Double = .0, val y: Double = .0
 )
-
-fun Container.pointReporter() {
-    val observablePoint = ObservableValue(Point())
-
-    vPanel {
-        style()
-
-        div().bind(observablePoint) { state ->
-            +state.toString()
-        }
-    }
-
-    document.onmousemove = {
-        observablePoint.value = Point(it.x, it.y)
-        asDynamic()
-    }
-}
-
-fun VPanel.style() {
-    justifyContent = JustifyContent.CENTER
-    alignItems = AlignItems.CENTER
-
-    height = 100.perc
-    color = Color.name(Col.WHITE)
-
-    fontFamily = "JetBrains Mono"
-    fontSize = 7.vw
-
-}

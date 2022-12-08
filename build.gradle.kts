@@ -32,14 +32,17 @@ repositories {
     mavenCentral()
 }
 
-val kotlinVersion: String by project
 val kvisionVersion: String by project
+
+val koinVersion: String by project
 
 dependencies {
     implementation("io.kvision:kvision:$kvisionVersion")
     implementation("io.kvision:kvision-state:$kvisionVersion")
     implementation("io.kvision:kvision-bootstrap:$kvisionVersion")
     implementation("io.kvision:kvision-bootstrap-css:$kvisionVersion")
+
+    implementation("io.insert-koin:koin-core:$koinVersion")
 }
 
 val webDir = file("src/main/web")
