@@ -16,8 +16,12 @@
 
 package dev.d1s.webapp.component
 
-import io.kvision.core.*
+import io.kvision.core.AlignItems
+import io.kvision.core.Col
+import io.kvision.core.Color
+import io.kvision.core.JustifyContent
 import io.kvision.html.div
+import io.kvision.panel.SimplePanel
 import io.kvision.panel.VPanel
 import io.kvision.panel.vPanel
 import io.kvision.state.ObservableValue
@@ -29,7 +33,7 @@ import org.koin.core.component.KoinComponent
 
 class PointReporterComponent : Component, KoinComponent {
 
-    override fun Container.render() {
+    override fun SimplePanel.render() {
         val observablePoint = ObservableValue(Point())
 
         vPanel {

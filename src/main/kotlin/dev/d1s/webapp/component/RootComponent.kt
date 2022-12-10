@@ -16,11 +16,24 @@
 
 package dev.d1s.webapp.component
 
+import dev.d1s.webapp.di.Qualifier
+import dev.d1s.webapp.util.deploy
+import io.kvision.core.Background
+import io.kvision.core.Col
+import io.kvision.core.Color
 import io.kvision.panel.SimplePanel
+import io.kvision.utils.perc
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-interface Component {
+class RootComponent : Component.Root, KoinComponent {
 
-    fun SimplePanel.render()
+    private val pointReporterComponent by inject<Component>(Qualifier.PointReporterComponent)
 
-    interface Root : Component
+    override fun SimplePanel.render() {
+        width = 100.perc
+        background = Background(Color.name(Col.BLACK))
+
+        deploy(pointReporterComponent)
+    }
 }

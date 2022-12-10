@@ -18,6 +18,9 @@ package dev.d1s.webapp.di
 
 import dev.d1s.webapp.component.Component
 import dev.d1s.webapp.component.PointReporterComponent
+import dev.d1s.webapp.component.RootComponent
+import dev.d1s.webapp.component.renderer.ComponentRenderer
+import dev.d1s.webapp.component.renderer.RootComponentRenderer
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
@@ -31,8 +34,19 @@ fun setupDi() {
 
 private val mainModule = module {
     components()
+    componentRenderer()
 }
 
 private fun Module.components() {
-    singleOf<Component>(::PointReporterComponent)
+    singleOf<Component.Root>(::RootComponent) {
+
+    }
+
+    singleOf<Component>(::PointReporterComponent) {
+        qualifier = Qualifier.PointReporterComponent
+    }
+}
+
+private fun Module.componentRenderer() {
+    singleOf<ComponentRenderer>(::RootComponentRenderer)
 }

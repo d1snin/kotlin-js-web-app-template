@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-package dev.d1s.webapp.component
+package dev.d1s.webapp.di
 
-import io.kvision.panel.SimplePanel
+import org.koin.core.qualifier.named
 
-interface Component {
+object Qualifier {
 
-    fun SimplePanel.render()
-
-    interface Root : Component
+    val PointReporterComponent = named("point-reporter-component")
 }

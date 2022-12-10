@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package dev.d1s.webapp.component
+package dev.d1s.webapp.util
 
+import dev.d1s.webapp.component.Component
 import io.kvision.panel.SimplePanel
 
-interface Component {
-
-    fun SimplePanel.render()
-
-    interface Root : Component
+fun SimplePanel.deploy(component: Component) {
+    with(component) {
+        render()
+    }
 }

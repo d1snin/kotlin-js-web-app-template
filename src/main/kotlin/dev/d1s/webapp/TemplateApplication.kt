@@ -16,37 +16,20 @@
 
 package dev.d1s.webapp
 
-import dev.d1s.webapp.component.Component
+import dev.d1s.webapp.component.renderer.ComponentRenderer
 import dev.d1s.webapp.di.setupDi
 import io.kvision.*
-import io.kvision.core.Background
-import io.kvision.core.Col
-import io.kvision.core.Color
-import io.kvision.core.Container
 import io.kvision.panel.root
-import io.kvision.utils.perc
 import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class TemplateApplication : Application(), KoinComponent {
 
-    private val components by lazy {
-        getKoin().getAll<Component>()
-    }
+    private val componentRenderer by inject<ComponentRenderer>()
 
     override fun start() {
         root(ROOT_ELEMENT_ID) {
-            width = 100.perc
-            background = Background(Color.name(Col.BLACK))
-
-            loadComponents()
-        }
-    }
-
-    private fun Container.loadComponents() {
-        components.forEach {
-            with(it) {
-                render()
-            }
+            componentRenderer.render(this)
         }
     }
 

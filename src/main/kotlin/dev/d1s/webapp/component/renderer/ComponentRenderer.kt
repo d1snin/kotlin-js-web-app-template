@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-package dev.d1s.webapp.component
+package dev.d1s.webapp.component.renderer
 
-import io.kvision.panel.SimplePanel
+import io.kvision.panel.Root
 
-interface Component {
+interface ComponentRenderer {
 
-    fun SimplePanel.render()
-
-    interface Root : Component
+    fun render(root: Root)
 }

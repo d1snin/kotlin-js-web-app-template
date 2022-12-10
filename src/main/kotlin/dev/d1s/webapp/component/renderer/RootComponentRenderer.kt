@@ -14,13 +14,19 @@
  * limitations under the License.
  */
 
-package dev.d1s.webapp.component
+package dev.d1s.webapp.component.renderer
 
-import io.kvision.panel.SimplePanel
+import dev.d1s.webapp.component.Component
+import dev.d1s.webapp.util.deploy
+import io.kvision.panel.Root
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-interface Component {
+class RootComponentRenderer : ComponentRenderer, KoinComponent {
 
-    fun SimplePanel.render()
+    private val rootComponent by inject<Component.Root>()
 
-    interface Root : Component
+    override fun render(root: Root) {
+        root.deploy(rootComponent)
+    }
 }
