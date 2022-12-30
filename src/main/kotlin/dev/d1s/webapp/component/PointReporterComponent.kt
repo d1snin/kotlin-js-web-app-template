@@ -26,7 +26,7 @@ import io.kvision.panel.VPanel
 import io.kvision.panel.vPanel
 import io.kvision.state.ObservableValue
 import io.kvision.state.bind
-import io.kvision.utils.perc
+import io.kvision.utils.vh
 import io.kvision.utils.vw
 import kotlinx.browser.document
 import org.koin.core.component.KoinComponent
@@ -51,10 +51,11 @@ class PointReporterComponent : Component, KoinComponent {
     }
 
     private fun VPanel.style() {
+        minHeight = 100.vh
+
         justifyContent = JustifyContent.CENTER
         alignItems = AlignItems.CENTER
 
-        height = 100.perc
         color = Color.name(Col.WHITE)
 
         fontFamily = "JetBrains Mono"

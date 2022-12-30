@@ -21,8 +21,9 @@ import dev.d1s.webapp.util.deploy
 import io.kvision.core.Background
 import io.kvision.core.Col
 import io.kvision.core.Color
+import io.kvision.html.div
 import io.kvision.panel.SimplePanel
-import io.kvision.utils.perc
+import io.kvision.utils.vh
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -31,9 +32,14 @@ class RootComponent : Component.Root, KoinComponent {
     private val pointReporterComponent by inject<Component>(Qualifier.PointReporterComponent)
 
     override fun SimplePanel.render() {
-        width = 100.perc
+        minHeight = 100.vh
+
         background = Background(Color.name(Col.BLACK))
 
-        deploy(pointReporterComponent)
+        div(className = "container-fluid justify-content-center align-items-center") {
+            minHeight = 100.vh
+
+            deploy(pointReporterComponent)
+        }
     }
 }
